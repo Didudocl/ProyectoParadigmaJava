@@ -1,15 +1,1 @@
-para buscar producto (boton):
-				-Clickear el buscar producto y que se abra otra interfaz
-				-Clickear el buscar producto y filtrar desde el mismo boton
 
-superclase como productos, con subclases como por ejemplo teclado, mouse, monitor, notebook, pc escritorio.
-en donde pueden compartir todos las subclases la misma marca (superclase productos con atributo private String marca)
-Cada subclase tendra sus propios atributos, por ejemplo:
-				-Teclado: 
-		public class Teclado extends producto{
-						private int id_teclado;
-						private String modelo;
-						private String idioma;
-
-						//getters y setters
-		}
