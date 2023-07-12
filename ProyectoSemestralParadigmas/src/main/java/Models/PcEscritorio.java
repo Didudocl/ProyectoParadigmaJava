@@ -12,6 +12,7 @@ public class PcEscritorio {
     private Teclado teclado;
     private Mouse mouse;
     private Monitor monitor;
+    private int existencias;
     private static ArrayList<PcEscritorio> pcescritorio = new ArrayList<>();
 
 
@@ -70,6 +71,33 @@ public class PcEscritorio {
         this.monitor = monitor;
     }
     
+    public int getExistencias() {
+    return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+    this.existencias = existencias;
+    }
+    
+    public static PcEscritorio buscarPcEscritorioPorCodigo(int codigo) {
+        for (PcEscritorio pcescritorio : pcescritorio) {
+            if (pcescritorio.getIdPc()== codigo) {
+                return pcescritorio;
+            }
+        }
+        return null; // Retorna null si no se encuentra el Pc de escritorio con el código especificado
+    }
+    
+    public void obtenerExistenciasPcEscritorio(int codigoPcEscritorio) {
+        PcEscritorio pcescritorio = PcEscritorio.buscarPcEscritorioPorCodigo(codigoPcEscritorio);
+
+        if (pcescritorio != null) {
+            int existencias = pcescritorio.getExistencias();
+            System.out.println("Existencias del mouse: " + existencias);
+        } else {
+            System.out.println("No se encontró el Pc de escritorio con el código proporcionado");
+        }
+    }
     
     //VALIDACIONES
     

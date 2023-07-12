@@ -7,9 +7,10 @@ public class Notebook {
     private int idNotebook;
     private String marca;
     private String modelo;
-    private int cantRam;
+    private String cantRam;
     private String procesador;
     private String tamPantalla;
+    private int existencias;
     
     private static ArrayList<Notebook> notebook = new ArrayList<>();
 
@@ -37,11 +38,11 @@ public class Notebook {
         this.modelo = modelo;
     }
 
-    public int getCantRam() {
+    public String getCantRam() {
         return cantRam;
     }
 
-    public void setCantRam(int cantRam) {
+    public void setCantRam(String cantRam) {
         this.cantRam = cantRam;
     }
 
@@ -69,6 +70,33 @@ public class Notebook {
         Notebook.notebook = notebook;
     }
 
+    public int getExistencias() {
+    return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+    this.existencias = existencias;
+    }
+    
+    public static Notebook buscarNotebookPorCodigo(int codigo) {
+        for (Notebook notebook : notebook) {
+            if (notebook.getIdNotebook()== codigo) {
+                return notebook;
+            }
+        }
+        return null; // Retorna null si no se encuentra el notebook con el código especificado
+    }
+    
+    public void obtenerExistenciasNotebook(int codigoNotebook) {
+        Notebook notebook = Notebook.buscarNotebookPorCodigo(codigoNotebook);
+
+        if (notebook != null) {
+            int existencias = notebook.getExistencias();
+            System.out.println("Existencias del notebook: " + existencias);
+        } else {
+            System.out.println("No se encontró el notebook con el código proporcionado");
+        }
+    }
     
     //VALIDACIONES
     
@@ -87,7 +115,7 @@ public class Notebook {
     
     //Validacion cantRam
     public boolean ValidarcantRam(){
-        if(this.cantRam == 2 || this.cantRam == 4 || this.cantRam == 8 || this.cantRam == 16){
+        if(this.cantRam.equals("2") || this.cantRam.equals("4") || this.cantRam.equals("8") || this.cantRam.equals("16")){
             return true;
         }else{
             return false;

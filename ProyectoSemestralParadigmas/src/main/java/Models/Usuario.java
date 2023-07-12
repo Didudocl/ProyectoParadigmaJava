@@ -2,6 +2,7 @@ package Models;
 
 import java.util.ArrayList;
 
+
 public class Usuario {
     
     private String rut;
@@ -10,7 +11,7 @@ public class Usuario {
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    
+    private int existencias;
     private static ArrayList<Usuario> usuario = new ArrayList<>();
 
     public String getRut() {
@@ -68,6 +69,62 @@ public class Usuario {
     public static void setUsuario(ArrayList<Usuario> usuario) {
         Usuario.usuario = usuario;
     }
+    
+    public int getExistencias() {
+    return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+    this.existencias = existencias;
+    }
+    
+    public static Usuario buscarUsuarioPorCodigo(String codigo) {
+        for (Usuario usuario : usuario) {
+            if (usuario.getRut()== codigo) {
+                return usuario;
+            }
+        }
+        return null; // Retorna null si no se encuentra el usuario con el código especificado
+    }
+    public void obtenerExistenciasUsuario(String codigoUsuario) {
+        Usuario usuario = Usuario.buscarUsuarioPorCodigo(codigoUsuario);
+
+        if (usuario != null) {
+            int existencias = usuario.getExistencias();
+            System.out.println("Existencias del usuario: " + existencias);
+        } else {
+            System.out.println("No se encontró el Usuario con el código proporcionado");
+        }
+    }
+    
+    public static Usuario busquedaUsuario(String user, String password){
+        
+        for (Usuario usuario: Usuario.getUsuario()){
+            if(usuario.getNombreUsuario().equals(user) && usuario.getContrasena().equals(password)){
+                return usuario;
+            }
+        }
+        return null;
+    }
+    
+    public String login(String user, String password){
+        
+        Usuario usuario = Usuario.busquedaUsuario(user, password);
+        
+        String mensaje="";
+        if(usuario != null){
+            
+          mensaje = "Usuario y contraseña correctas";  
+        }
+        else{
+            mensaje = "Usuario no encontrado";
+        }
+        
+        return mensaje;
+    }
+    
+}
+    
     
     
     //VALIDACIONES
@@ -192,4 +249,5 @@ public class Usuario {
     //Validacion apellidoPaterno
     
     //Validacion apellidoMaterno
-}
+
+

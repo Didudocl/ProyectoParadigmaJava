@@ -7,6 +7,7 @@ public class Mouse {
     private int idMouse;
     private String marca;
     private String modelo;
+    private int existencias;
     
     private static ArrayList<Mouse> mouse = new ArrayList<>();
 
@@ -40,6 +41,34 @@ public class Mouse {
 
     public static void setMouse(ArrayList<Mouse> mouse) {
         Mouse.mouse = mouse;
+    }
+    
+    public int getExistencias() {
+    return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+    this.existencias = existencias;
+    }
+    
+    public static Mouse buscarMousePorCodigo(int codigo) {
+        for (Mouse mouse : mouse) {
+            if (mouse.getIdMouse()== codigo) {
+                return mouse;
+            }
+        }
+        return null; // Retorna null si no se encuentra el mouse con el código especificado
+    }
+    
+    public void obtenerExistenciasMouse(int codigoMouse) {
+        Mouse mouse = Mouse.buscarMousePorCodigo(codigoMouse);
+
+        if (mouse != null) {
+            int existencias = mouse.getExistencias();
+            System.out.println("Existencias del mouse: " + existencias);
+        } else {
+            System.out.println("No se encontró el mouse con el código proporcionado");
+        }
     }
     
     //VALIDACIONES
